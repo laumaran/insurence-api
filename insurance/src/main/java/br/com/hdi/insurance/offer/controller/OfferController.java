@@ -1,5 +1,6 @@
 package br.com.hdi.insurance.offer.controller;
 
+import br.com.hdi.insurance.models.BrokerUpdateDTO;
 import br.com.hdi.insurance.offer.service.OfferService;
 import br.com.hdi.insurance.models.BrokerData;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,12 @@ public class OfferController {
     @GetMapping("/verify-broker/{document}")
     public ResponseEntity<BrokerData> verifyBroker(@PathVariable String document) {
         return ResponseEntity.ok(offerService.verifyBroker(document));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{code}")
+    public ResponseEntity<BrokerUpdateDTO> updateBrokerStatus(@PathVariable String code, @RequestBody BrokerUpdateDTO brokerUpdateDTO) {
+        return ResponseEntity.ok(offerService.updateBrokerStatus(code, brokerUpdateDTO));
     }
 
 }

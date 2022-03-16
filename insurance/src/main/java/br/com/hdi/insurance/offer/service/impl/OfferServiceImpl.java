@@ -6,6 +6,7 @@ import br.com.hdi.insurance.exception.BrokerServiceNotFoundException;
 import br.com.hdi.insurance.models.BrokerData;
 import br.com.hdi.insurance.models.BrokerDataResponse;
 import br.com.hdi.insurance.models.BrokerResponse;
+import br.com.hdi.insurance.models.BrokerUpdateDTO;
 import br.com.hdi.insurance.offer.service.OfferService;
 import br.com.hdi.insurance.utils.ActiveUtils;
 import feign.FeignException;
@@ -50,6 +51,11 @@ public class OfferServiceImpl implements OfferService {
             logger.error(ex.getMessage());
             throw new BrokerServiceNotFoundException(ex.getMessage());
         }
+    }
+
+    @Override
+    public BrokerUpdateDTO updateBrokerStatus(String code, BrokerUpdateDTO brokerUpdateDTO) {
+        return brokerService.updateBrokerStatus(code, brokerUpdateDTO);
     }
 
 }
